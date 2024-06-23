@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView formula, finalResult;
     private Button one, two, three, four, five, six, seven, eight, nine, zero,
             plus, dif, divide, multiply, result,
-            clear;
+            root, square, percent, clear;
     private char Action;
     private double first = Double.NaN;
     private double second;
@@ -62,6 +62,32 @@ public class MainActivity extends AppCompatActivity {
             finalResult.setText(String.valueOf(first));
             formula.setText(null);
         });
+        root.setOnClickListener(view -> {
+            if (!formula.getText().toString().isEmpty()) {
+                double number = Double.parseDouble(formula.getText().toString());
+                first = Math.sqrt(number);
+                finalResult.setText(String.valueOf(first));
+                formula.setText("");
+            }
+        });
+
+        square.setOnClickListener(view -> {
+            if (!formula.getText().toString().isEmpty()) {
+                double number = Double.parseDouble(formula.getText().toString());
+                first = Math.pow(number, 2);
+                finalResult.setText(String.valueOf(first));
+                formula.setText("");
+            }
+        });
+
+        percent.setOnClickListener(view -> {
+            if (!formula.getText().toString().isEmpty()) {
+                double number = Double.parseDouble(formula.getText().toString());
+                first = number / 100;
+                finalResult.setText(String.valueOf(first));
+                formula.setText("");
+            }
+        });
 
         clear.setOnClickListener(view -> {
             formula.setText("");
@@ -86,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         plus = (Button) findViewById(R.id.plus);
         multiply = (Button) findViewById(R.id.multiply);
         result = (Button) findViewById(R.id.result);
+
+        root = (Button) findViewById(R.id.root);
+        square = (Button) findViewById(R.id.square);
+        percent = (Button) findViewById(R.id.percent);
         clear = (Button) findViewById(R.id.clear);
 
         formula = (TextView) findViewById(R.id.formula);
